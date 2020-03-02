@@ -1,12 +1,19 @@
 version: 0.0
-
+os: linux
 files:
-  - source: /
-    destination: /usr/share/nginx/html/
+  - source: /.
+    destination: /var/www/html/
+
 hooks:
-  ApplicationStop:
   BeforeInstall:
     - location: scripts/beforeinstall.sh
-      timeout: 300
-      runas: ubuntu
-    
+      timeout: 6000
+  AfterInstall:
+    - location: scripts/afterinstall.sh
+      timeout: 6000
+  ApplicationStart:
+    - location: scripts/appstart.sh
+      timeout: 6000
+  ApplicationStop:
+    - location: scripts/appstop.sh
+      timeout: 6000
