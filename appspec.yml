@@ -1,0 +1,12 @@
+version: 0.0
+
+files:
+  - source: /
+    destination: /usr/share/nginx/html/
+hooks:
+  ApplicationStop:
+  BeforeInstall:
+    - location: scripts/beforeinstall.sh
+      timeout: 300
+      runas: ubuntu
+    
